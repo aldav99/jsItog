@@ -1,0 +1,29 @@
+.core-border {
+    border: 2px solid rgb(0, 183, 255);
+  }
+
+.number-before:before {
+    content: "# ";
+ }
+
+ .data-before:before {
+    content: "   Created at";
+ }
+
+ .parent {
+    margin: 1px; /* Отступы вокруг элемента */
+    /* background: #fd0; /* Цвет фона */
+    /*padding: 10px; Поля вокруг текста */
+   }
+
+.redd{
+    background-color: brown;
+}
+
+tr:nth-child(odd){
+    text-align: left;
+}
+
+tr:nth-child(even){
+    text-align: right;
+}
