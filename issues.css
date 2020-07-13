@@ -11,19 +11,70 @@
  }
 
  .parent {
-    margin: 1px; /* Отступы вокруг элемента */
-    /* background: #fd0; /* Цвет фона */
-    /*padding: 10px; Поля вокруг текста */
+    margin: 1px; 
    }
+  
+  #myProgress {
+    width: 100%;
+    background-color: white;
+  }
+  
+  #myBar {
+    width: 0%;
+    height: 30px;
+    background-color: green;
+  }
 
-.redd{
-    background-color: brown;
-}
-
-tr:nth-child(odd){
+  table.blueTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
     text-align: left;
+    border-collapse: collapse;
+  }
+  table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+  table.blueTable tbody td {
+    font-size: 13px;
+  }
+
+  /* ----------------------------- */
+
+  table.purpurTable {
+    border: 1px solid #1C6EA4;
+    background-color: #bd71c0;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  table.purpurTable td {
+    border: 1px solid #aaaaaa;
+    padding: 3px 2px;
+  }
+  table.purpurTable tbody td {
+    font-size: 13px;
+  }
+
+/* ----------------------------- */
+
+table.greenTable {
+  border: 1px solid #1C6EA4;
+  background-color: #84c281;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.greenTable td {
+  border: 1px solid #aaaaaa;
+  padding: 3px 2px;
+}
+table.greenTable tbody td {
+  font-size: 13px;
 }
 
-tr:nth-child(even){
-    text-align: right;
+#Error{
+  background-color: red;
+  color: white;
 }
