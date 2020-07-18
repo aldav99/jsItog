@@ -1,0 +1,80 @@
+.core-border {
+    border: 2px solid rgb(0, 183, 255);
+  }
+
+.number-before:before {
+    content: "# ";
+ }
+
+ .data-before:before {
+    content: "   Created at";
+ }
+
+ .parent {
+    margin: 1px; 
+   }
+  
+  #myProgress {
+    width: 100%;
+    background-color: white;
+  }
+  
+  #myBar {
+    width: 0%;
+    height: 30px;
+    background-color: green;
+  }
+
+  table.blueTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+  }
+  table.blueTable tbody td {
+    font-size: 13px;
+  }
+
+  /* ----------------------------- */
+
+  table.purpurTable {
+    border: 1px solid #1C6EA4;
+    background-color: #bd71c0;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+  }
+  table.purpurTable td {
+    border: 1px solid #aaaaaa;
+    padding: 3px 2px;
+  }
+  table.purpurTable tbody td {
+    font-size: 13px;
+  }
+
+/* ----------------------------- */
+
+table.greenTable {
+  border: 1px solid #1C6EA4;
+  background-color: #84c281;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table.greenTable td {
+  border: 1px solid #aaaaaa;
+  padding: 3px 2px;
+}
+table.greenTable tbody td {
+  font-size: 13px;
+}
+
+#Error{
+  background-color: red;
+  color: white;
+}
