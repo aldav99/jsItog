@@ -1,56 +1,50 @@
 let elemBtn = document.getElementById('btn');
 
-elemBtn.addEventListener('click', fetchIssue);
-elemBtn.addEventListener('click', launch);
+if (elemBtn) {
+    elemBtn.addEventListener('click', fetchIssue);
+    elemBtn.addEventListener('click', launch);
+}
 
-async function fetchAsync() {
-    let inptUrl = document.getElementById('url');
-    let url = inptUrl.value;
+async function fetchAsync(url) {
 
-    // DEBUG
-    // let url = "https://api.github.com/repos/octocat/Hello-World/issues";
-    // let url = "https://api.github.com/rep";
-    // DEBUG
     let response = await fetch(url);
     if (!response.ok) {
         throw new Error(`Status: ${response.status} (${response.statusText})`);
     }
-    const reader = response.body.getReader();
-    const contentLength = +response.headers.get('Content-Length');
-
-    let receivedLength = 0;
-    let chunks = [];
-
-    while (true) {
-        const { done, value } = await reader.read();
-
-        if (done) {
-            break;
-        }
-
-        chunks.push(value);
-        receivedLength += value.length;
-
-        console.log(`Получено ${receivedLength} из ${contentLength}`)
-    }
-
-    let chunksAll = new Uint8Array(receivedLength); // (4.1)
-    let position = 0;
-    for (let chunk of chunks) {
-        chunksAll.set(chunk, position); // (4.2)
-        position += chunk.length;
-    }
-    let result = new TextDecoder("utf-8").decode(chunksAll);
-    let data = JSON.parse(result);
-    return data;
+    return response;
 }
 
 function fetchIssue() {
-    fetchAsync()
-        .then(data => data.map(function (element) {
-            return addResultData(element);
+    let usernamePart = document.getElementById('username');
+    let repoPart = document.getElementById('repo');
+    let assigneePart = document.getElementById('assignee');
+
+    let user = usernamePart.value.trim();
+    let repo = repoPart.value.trim();
+    let assignee = assigneePart.value.trim();
+
+    let url = `https://api.github.com/repos/${user}/${repo}/issues`;
+
+    fetchAsync(url)
+        .then(response => response.json())
+        .then(issues => issues.map(function (element) {
+            if (proveIssue(element) && proveAssignee(element, assignee)) {
+                return addResultData(element);
+            }
         }))
         .catch(reason => errorMessage(reason))
+}
+
+function proveIssue(issue) {
+    return !issue.pull_request
+}
+
+function proveAssignee(issue, assignee) {
+    if (assignee) {
+        return (issue.assignee && issue.assignee.login === assignee)
+    } else {
+        return true
+    }
 }
 
 function launch() {
@@ -69,8 +63,7 @@ function launch() {
         if (i == 0) {
             i = 1;
             let width = 1;
-            let id = setInterval(frame, 10);
-            function frame() {
+            let id = setInterval(function () {
                 if (width >= 100) {
                     clearInterval(id);
                     i = 0;
@@ -78,7 +71,7 @@ function launch() {
                     width++;
                     myBar.style.width = width + "%";
                 }
-            }
+            }, 10);
         }
     }
     return move();
@@ -146,6 +139,8 @@ function addResultData(data) {
     divCore.appendChild(table3);
 
     resultOutput.appendChild(divCore);
+    console.log(resultOutput.childElementCount)
+
 }
 
 function errorMessage(reason) {
